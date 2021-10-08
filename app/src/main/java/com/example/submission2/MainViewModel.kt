@@ -27,7 +27,6 @@ class MainViewModel : ViewModel() {
 
         val url = "https://api.github.com/search/users?q=$query"
 
-        _isLoading.value = true
         val client = AsyncHttpClient()
         client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
@@ -37,7 +36,7 @@ class MainViewModel : ViewModel() {
                 headers: Array<out Header>,
                 responseBody: ByteArray
             ) {
-                _isLoading.value = false
+
                 val result = String(responseBody)
                 Log.d(TAG, result)
                 try {
