@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Submission2</string>
+    <string name="url">url</string>
+    <string name="username">Username</string>
+    <string name="search">Search</string>
+    <string name="search_user">Masukkan Username</string>
+</resources>
