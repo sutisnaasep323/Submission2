@@ -28,7 +28,7 @@ class MainViewModel : ViewModel() {
         val url = "https://api.github.com/search/users?q=$query"
 
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
         client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
@@ -38,7 +38,7 @@ class MainViewModel : ViewModel() {
             ) {
 
                 val result = String(responseBody)
-                Log.d(TAG, result)
+                Log.d("on Success search : ", url)
                 try {
 
                     val responseObject = JSONObject(result)
@@ -56,7 +56,7 @@ class MainViewModel : ViewModel() {
                         listItems.add(userItems)
 
                     }
-
+                    Log.d("ListItems :", listItems.toString())
                     listUsers.postValue(listItems)
 
                 } catch (e: Exception) {
