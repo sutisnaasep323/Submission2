@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         showSearch(true)
-
+        mainViewModel = MainViewModel()
         setMainModel(savedInstanceState)
         setRecyclerView()
     }
