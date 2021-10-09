@@ -53,10 +53,8 @@ class MainActivity : AppCompatActivity() {
         searchView.queryHint = resources.getString(R.string.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.d(TAG, searchView.toString())
                 showLoading(true)
                 showSearch(false)
-//                Toast.makeText(this@MainActivity, "Show Search", Toast.LENGTH_LONG).show()
                 mainViewModel.setUser(query, this@MainActivity)
                 return true
             }
