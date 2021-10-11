@@ -1,18 +1,16 @@
 package com.example.submission2.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.submission2.R
+import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.databinding.ListItemsBinding
 import com.example.submission2.model.GitItem
 
 class SearchAdapter : RecyclerView.Adapter<SearchAdapter.UserViewHolder>() {
     private val mData = ArrayList<GitItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
-    private lateinit var binding: ListItemsBinding
 
     fun setData(item: ArrayList<GitItem>) {
         mData.clear()
@@ -21,26 +19,25 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.UserViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        return UserViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_items, parent, false)
-        )
+        val binding = ListItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return UserViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.bind(mData[position])
     }
 
-    inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(gitItems: GitItem) {
-            with(itemView) {
-
-                binding.username.text = gitItems.username
-                binding.url.text = gitItems.url
+    inner class UserViewHolder(private val binding: ListItemsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: GitItem) {
+            with(binding) {
                 Glide.with(itemView.context)
-                    .load(gitItems.avatar)
-                    .into(binding.avatar)
-                itemView.setOnClickListener { onItemClickCallback?.onIemClicked(gitItems) }
-
+                    .load(user.avatar)
+                    .apply(RequestOptions())
+                    .into(avatar)
+                username.text = user.login
+                url.text = user.url
+                itemView.setOnClickListener { onItemClickCallback?.onIemClicked(user) }
             }
         }
     }

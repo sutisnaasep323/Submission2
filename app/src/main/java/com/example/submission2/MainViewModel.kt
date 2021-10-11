@@ -1,9 +1,7 @@
 package com.example.submission2
 
 import android.content.Context
-import android.nfc.Tag
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -22,13 +20,11 @@ class MainViewModel : ViewModel() {
     val listUsers = MutableLiveData<ArrayList<GitItem>>()
 
     fun setUser(query: String, context: Context) {
-
         val listItems = ArrayList<GitItem>()
-
         val url = "https://api.github.com/search/users?q=$query"
 
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token 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")
         client.addHeader("User-Agent", "request")
         client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(
@@ -36,11 +32,10 @@ class MainViewModel : ViewModel() {
                 headers: Array<out Header>,
                 responseBody: ByteArray
             ) {
-
                 val result = String(responseBody)
                 Log.d("on Success search : ", url)
-                try {
 
+                try {
                     val responseObject = JSONObject(result)
                     val list = responseObject.getJSONArray("items")
 
@@ -49,18 +44,16 @@ class MainViewModel : ViewModel() {
                         Log.d(TAG, users.toString())
                         val userItems = GitItem()
 
-                        userItems.username = users.getString("login")
-                        userItems.url = users.getString("url")
+                        userItems.login = users.getString("login")
+                        userItems.url = users.getString("html_url")
                         userItems.avatar = users.getString("avatar_url")
 
                         listItems.add(userItems)
-
                     }
-                    Log.d("ListItems :", listItems.toString())
                     listUsers.postValue(listItems)
 
                 } catch (e: Exception) {
-                    Toast.makeText(context, "Unable to Connect", Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
                 }
             }
 
@@ -70,6 +63,7 @@ class MainViewModel : ViewModel() {
                 responseBody: ByteArray,
                 error: Throwable
             ) {
+                Log.d("onFailure", error.message.toString())
                 val errorMessage = when (statusCode) {
                     401 -> "$statusCode : Bad Request"
                     403 -> "$statusCode : Forbidden"

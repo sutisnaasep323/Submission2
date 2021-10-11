@@ -20,8 +20,8 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,9 +45,9 @@
         android:id="@+id/tvSearchUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="235dp"
+        android:layout_marginTop="240dp"
         android:text="@string/search_user"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
