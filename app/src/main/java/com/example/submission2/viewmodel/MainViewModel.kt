@@ -1,4 +1,4 @@
-package com.example.submission2
+package com.example.submission2.viewmodel
 
 import android.content.Context
 import android.util.Log
@@ -22,9 +22,9 @@ class MainViewModel : ViewModel() {
     fun setUser(query: String, context: Context) {
         val listItems = ArrayList<GitItem>()
         val url = "https://api.github.com/search/users?q=$query"
-
+        val apikey = "YOUR API KEY"
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token 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")
+        client.addHeader("Authorization", "token $apikey")
         client.addHeader("User-Agent", "request")
         client.get(url, object : AsyncHttpResponseHandler() {
             override fun onSuccess(

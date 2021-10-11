@@ -1,4 +1,4 @@
-package com.example.submission2
+package com.example.submission2.ui
 
 import android.app.SearchManager
 import android.content.Context
@@ -11,11 +11,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.submission2.R
 import com.example.submission2.adapter.OnItemClickCallback
 import com.example.submission2.adapter.SearchAdapter
 import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.GitItem
+import com.example.submission2.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +38,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setMainModel() {
-        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            MainViewModel::class.java)
         mainViewModel.getUser().observe(this, Observer {
             if (it != null) {
                 adapter.setData(it)
