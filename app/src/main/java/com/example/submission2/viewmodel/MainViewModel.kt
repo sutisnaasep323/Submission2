@@ -22,7 +22,7 @@ class MainViewModel : ViewModel() {
     fun setUser(query: String, context: Context) {
         val listItems = ArrayList<GitItem>()
         val url = "https://api.github.com/search/users?q=$query"
-        val apikey = "YOUR API KEY"
+        val apikey = "Your Api Key"
         val client = AsyncHttpClient()
         client.addHeader("Authorization", "token $apikey")
         client.addHeader("User-Agent", "request")

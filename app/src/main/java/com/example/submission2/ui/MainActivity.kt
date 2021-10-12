@@ -12,24 +12,26 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.submission2.R
-import com.example.submission2.adapter.OnItemClickCallback
-import com.example.submission2.adapter.SearchAdapter
+import com.example.submission2.adapter.UserAdapter
 import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.GitItem
+import com.example.submission2.model.UserItem
 import com.example.submission2.viewmodel.MainViewModel
+import com.example.submission2.viewmodel.UserViewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-    private lateinit var adapter : SearchAdapter
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var adapter : UserAdapter
+    private lateinit var viewModel: UserViewModel
+    private lateinit var tempArrayList: ArrayList<UserItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        adapter = SearchAdapter()
+        adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
         showSearch(true)
@@ -38,11 +40,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setMainModel() {
-        mainViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            MainViewModel::class.java)
-        mainViewModel.getUser().observe(this, Observer {
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
+        viewModel.getSearchUser().observe(this,{
             if (it != null) {
-                adapter.setData(it)
+                adapter.setUser(it)
                 showLoading(false)
                 showSearch(false)
             }
@@ -65,11 +66,12 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     showSearch(false)
                     showLoading(true)
-                    mainViewModel.setUser(query, this@MainActivity)
+                    viewModel.setUser(query)
                 }
                 return true
             }
             override fun onQueryTextChange(newText: String): Boolean {
+
                 return false
             }
         })
@@ -81,11 +83,11 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.setHasFixedSize(true)
 
-        adapter.setOnItemClickCallback(object : OnItemClickCallback {
-            override fun onIemClicked(userItems: GitItem) {
-                Toast.makeText(this@MainActivity, "Klik RecylerView", Toast.LENGTH_LONG).show()
-            }
-        })
+//        adapter.setOnItemClickCallback(object : OnItemClickCallback {
+//            override fun onIemClicked(userItems: UserItem) {
+//                Toast.makeText(this@MainActivity, "Klik RecylerView", Toast.LENGTH_LONG).show()
+//            }
+//        })
     }
 
     private fun showSearch(state: Boolean) {
