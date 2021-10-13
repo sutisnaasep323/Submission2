@@ -29,7 +29,10 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                     .into(avatar)
                 username.text = user.login
                 url.text = user.url
-                itemView.setOnClickListener { onItemClickCallback?.onIemClicked(user) }
+//                itemView.setOnClickListener { onItemClickCallback?.onIemClicked(user) }
+            }
+            binding.root.setOnClickListener{
+                onItemClickCallback?.onItemClicked(user)
             }
         }
     }
@@ -49,6 +52,6 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         this.onItemClickCallback = onItemClickCallback
     }
     interface OnItemClickCallback {
-        fun onIemClicked(user: UserItem)
+        fun onItemClicked(user: UserItem)
     }
 }

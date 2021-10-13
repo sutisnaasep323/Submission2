@@ -2,23 +2,21 @@ package com.example.submission2.ui
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.submission2.R
 import com.example.submission2.adapter.UserAdapter
 import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.UserItem
-import com.example.submission2.viewmodel.UserViewModel
+import com.example.submission2.ui.viewmodel.UserViewModel
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -89,8 +87,11 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.setHasFixedSize(true)
 
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
-            override fun onIemClicked(userItems: UserItem) {
-                Toast.makeText(this@MainActivity, "${userItems.login} diklik", Toast.LENGTH_LONG).show()
+            override fun onItemClicked(userItems: UserItem) {
+                Intent(this@MainActivity,DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, userItems.login)
+                    startActivity(it)
+                }
             }
         })
     }
