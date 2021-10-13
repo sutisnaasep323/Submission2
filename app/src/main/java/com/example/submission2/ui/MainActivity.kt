@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.isEmpty()){
+
                     setMainModel()
                     showSearch(true)
                 } else {

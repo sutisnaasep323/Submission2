@@ -49,21 +49,21 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_username">
 
         <TextView
-            android:id="@+id/tv_following"
+            android:id="@+id/tv_followers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:drawableStart="@drawable/ic_people"
             android:gravity="center_vertical"
             android:textColor="@color/black"
-            android:text="@string/following" />
+            android:text="@string/followers" />
 
         <TextView
-            android:id="@+id/tv_followers"
+            android:id="@+id/tv_following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="@string/followers" />
+            android:text="@string/following" />
 
     </LinearLayout>
 

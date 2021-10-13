@@ -11,26 +11,26 @@ import retrofit2.http.Query
 
 interface Api {
     @GET("search/users")
-    @Headers("Authorization: token (YOUR API KEY)")
+    @Headers("Authorization: token (KEY API)")
     fun getSearchUsers(
         @Query("q") query: String
     ):Call<UserResponse>
 
     @GET("users/{username}")
-    @Headers("Authorization: token (YOUR API KEY)")
+    @Headers("Authorization: token (KEY API)")
     fun getDetailUser (
         @Path("username") username: String?
     ):Call<DetailUserResponse>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token (YOUR API KEY)")
+    @Headers("Authorization: token (KEY API)")
     fun getFollowers (
         @Path("username") username: String
-    ):Call<Array<UserItem>>
+    ):Call<ArrayList<UserItem>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token (YOUR API KEY)")
+    @Headers("Authorization: token (KEY API)")
     fun getFollowing (
         @Path("username") username: String
-    ):Call<Array<UserItem>>
+    ):Call<ArrayList<UserItem>>
 }
