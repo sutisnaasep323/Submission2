@@ -7,11 +7,15 @@ import androidx.lifecycle.ViewModel
 import com.example.submission2.api.RetrofitClient
 import com.example.submission2.model.UserItem
 import com.example.submission2.model.UserResponse
+import com.example.submission2.ui.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class UserViewModel: ViewModel() {
+
+    private val _isShowImage = MutableLiveData<Boolean>()
+    val showImage: LiveData<Boolean> = _isShowImage
 
     val listUser = MutableLiveData<ArrayList<UserItem>>()
 

@@ -11,7 +11,7 @@ import com.example.submission2.model.UserItem
 class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private val list = ArrayList<UserItem>()
-//    private var onItemClickCallback: OnItemClickCallback? = null
+    private var onItemClickCallback: OnItemClickCallback? = null
 
     fun setUser(users: ArrayList<UserItem>) {
         list.clear()
@@ -29,7 +29,7 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                     .into(avatar)
                 username.text = user.login
                 url.text = user.url
-//                itemView.setOnClickListener { onItemClickCallback?.onIemClicked(user) }
+                itemView.setOnClickListener { onItemClickCallback?.onIemClicked(user) }
             }
         }
     }
@@ -45,8 +45,10 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun getItemCount(): Int = list.size
 
-//    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
-//        this.onItemClickCallback = onItemClickCallback
-//    }
-
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
+    interface OnItemClickCallback {
+        fun onIemClicked(user: UserItem)
+    }
 }

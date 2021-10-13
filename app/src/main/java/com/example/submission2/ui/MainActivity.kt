@@ -8,23 +8,23 @@ import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.Observer
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.submission2.R
 import com.example.submission2.adapter.UserAdapter
 import com.example.submission2.databinding.ActivityMainBinding
-import com.example.submission2.model.GitItem
 import com.example.submission2.model.UserItem
-import com.example.submission2.viewmodel.MainViewModel
 import com.example.submission2.viewmodel.UserViewModel
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var adapter : UserAdapter
     private lateinit var viewModel: UserViewModel
-    private lateinit var tempArrayList: ArrayList<UserItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +34,16 @@ class MainActivity : AppCompatActivity() {
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
-        showSearch(true)
         showRecyclerView()
         setMainModel()
+        showSearch(true)
     }
 
     private fun setMainModel() {
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
+        viewModel.showImage.observe(this, {
+            showSearch(it)
+        })
         viewModel.getSearchUser().observe(this,{
             if (it != null) {
                 adapter.setUser(it)
@@ -60,18 +63,20 @@ class MainActivity : AppCompatActivity() {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.queryHint = resources.getString(R.string.search)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String): Boolean {
-                if (query.isEmpty()) {
-                    return true
-                } else {
-                    showSearch(false)
-                    showLoading(true)
-                    viewModel.setUser(query)
-                }
                 return true
             }
-            override fun onQueryTextChange(newText: String): Boolean {
 
+            override fun onQueryTextChange(query: String): Boolean {
+                if (query.isEmpty()){
+                    setMainModel()
+                    showSearch(true)
+                } else {
+                    showLoading(true)
+                    setMainModel()
+                    viewModel.setUser(query)
+                }
                 return false
             }
         })
@@ -83,11 +88,11 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.setHasFixedSize(true)
 
-//        adapter.setOnItemClickCallback(object : OnItemClickCallback {
-//            override fun onIemClicked(userItems: UserItem) {
-//                Toast.makeText(this@MainActivity, "Klik RecylerView", Toast.LENGTH_LONG).show()
-//            }
-//        })
+        adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
+            override fun onIemClicked(userItems: UserItem) {
+                Toast.makeText(this@MainActivity, "${userItems.login} diklik", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
     private fun showSearch(state: Boolean) {
