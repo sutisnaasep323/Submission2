@@ -12,7 +12,7 @@ import com.example.submission2.ui.viewmodel.DetailViewModel
 
 class DetailUserActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         const val EXTRA_USERNAME = "extra_username"
     }
 
@@ -28,17 +28,20 @@ class DetailUserActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(DetailViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(DetailViewModel::class.java)
         if (username != null) {
             viewModel.setDetailUser(username)
         }
         viewModel.getDetailUser().observe(this, {
-            if (it != null){
+            if (it != null) {
                 binding.apply {
                     tvUsername.text = it.login
                     tvName.text = it.name
                     tvFollowers.text = resources.getString(R.string.followers, it.followers)
-                    tvFollowing.text =resources.getString(R.string.following, it.following)
+                    tvFollowing.text = resources.getString(R.string.following, it.following)
                     Glide.with(this@DetailUserActivity)
                         .load(it.avatar_url)
                         .apply(RequestOptions())
@@ -48,10 +51,10 @@ class DetailUserActivity : AppCompatActivity() {
         })
 
         val viewPagerAdapter = ViewPagerAdapter(this, supportFragmentManager, bundle)
-            binding.apply {
-                viewpager.adapter = viewPagerAdapter
-                tabs.setupWithViewPager(viewpager)
-            }
+        binding.apply {
+            viewpager.adapter = viewPagerAdapter
+            tabs.setupWithViewPager(viewpager)
+        }
 
     }
 }

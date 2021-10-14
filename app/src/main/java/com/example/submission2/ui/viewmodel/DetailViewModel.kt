@@ -10,19 +10,19 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel : ViewModel() {
 
     val user = MutableLiveData<DetailUserResponse>()
 
-    fun setDetailUser(username: String){
+    fun setDetailUser(username: String) {
         RetrofitClient.apiInstance
             .getDetailUser(username)
-            .enqueue(object : Callback<DetailUserResponse>{
+            .enqueue(object : Callback<DetailUserResponse> {
                 override fun onResponse(
                     call: Call<DetailUserResponse>,
                     response: Response<DetailUserResponse>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         user.postValue(response.body())
                     }
                 }
@@ -34,7 +34,7 @@ class DetailViewModel: ViewModel() {
             })
     }
 
-    fun getDetailUser(): LiveData<DetailUserResponse>{
+    fun getDetailUser(): LiveData<DetailUserResponse> {
         return user
     }
 

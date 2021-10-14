@@ -11,22 +11,22 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserViewModel: ViewModel() {
+class UserViewModel : ViewModel() {
 
     private val _isShowImage = MutableLiveData<Boolean>()
     val showImage: LiveData<Boolean> = _isShowImage
 
     val listUser = MutableLiveData<ArrayList<UserItem>>()
 
-    fun setUser (query: String){
+    fun setUser(query: String) {
         RetrofitClient.apiInstance
             .getSearchUsers(query)
-            .enqueue(object: Callback<UserResponse>{
+            .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         listUser.postValue(response.body()?.items)
                     }
                 }
@@ -38,7 +38,7 @@ class UserViewModel: ViewModel() {
             })
     }
 
-    fun getSearchUser(): LiveData<ArrayList<UserItem>>{
+    fun getSearchUser(): LiveData<ArrayList<UserItem>> {
         return listUser
     }
 

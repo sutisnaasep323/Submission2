@@ -36,7 +36,7 @@ class ViewPagerAdapter(private val mContext: Context, fm: FragmentManager, data:
 
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
-        when (position){
+        when (position) {
             0 -> fragment = FollowersFragment()
             1 -> fragment = FollowingFragment()
         }

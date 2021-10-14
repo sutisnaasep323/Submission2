@@ -11,10 +11,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.collections.ArrayList
 
-class FollowingViewModel: ViewModel() {
+class FollowingViewModel : ViewModel() {
     val listFollowing = MutableLiveData<ArrayList<UserItem>>()
 
-    fun setFollowing (username: String){
+    fun setFollowing(username: String) {
         RetrofitClient.apiInstance
             .getFollowing(username)
             .enqueue(object : Callback<ArrayList<UserItem>> {
@@ -22,7 +22,7 @@ class FollowingViewModel: ViewModel() {
                     call: Call<ArrayList<UserItem>>,
                     response: Response<ArrayList<UserItem>>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         listFollowing.postValue(response.body())
                     }
                 }
@@ -34,7 +34,7 @@ class FollowingViewModel: ViewModel() {
             })
     }
 
-    fun getFollowing(): LiveData<ArrayList<UserItem>>{
+    fun getFollowing(): LiveData<ArrayList<UserItem>> {
         return listFollowing
     }
 }

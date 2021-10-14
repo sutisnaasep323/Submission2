@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,8 +19,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
-    private lateinit var adapter : UserAdapter
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: UserAdapter
     private lateinit var viewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +37,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setMainModel() {
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(UserViewModel::class.java)
         viewModel.showImage.observe(this, {
             showSearch(it)
         })
-        viewModel.getSearchUser().observe(this,{
+        viewModel.getSearchUser().observe(this, {
             if (it != null) {
                 adapter.setUser(it)
                 showLoading(false)
@@ -63,20 +65,21 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                return true
+                return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.isEmpty()){
-
-                    setMainModel()
                     showSearch(true)
+                    binding.recyclerView.visibility = View.GONE
                 } else {
+                    showSearch(false)
                     showLoading(true)
                     setMainModel()
                     viewModel.setUser(query)
+                    binding.recyclerView.visibility = View.VISIBLE
                 }
-                return false
+                return true
             }
         })
         return super.onCreateOptionsMenu(menu)
@@ -89,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
             override fun onItemClicked(userItems: UserItem) {
-                Intent(this@MainActivity,DetailUserActivity::class.java).also {
+                Intent(this@MainActivity, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, userItems.login)
                     startActivity(it)
                 }

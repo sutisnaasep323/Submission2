@@ -9,10 +9,9 @@ import com.example.submission2.R
 import com.example.submission2.adapter.UserAdapter
 import com.example.submission2.databinding.FragmentFollowBinding
 import com.example.submission2.ui.DetailUserActivity
-import com.example.submission2.ui.viewmodel.DetailViewModel
 import com.example.submission2.ui.viewmodel.FollowersViewModel
 
-class FollowersFragment: Fragment(R.layout.fragment_follow) {
+class FollowersFragment : Fragment(R.layout.fragment_follow) {
     private var _binding: FragmentFollowBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: UserAdapter
@@ -38,10 +37,13 @@ class FollowersFragment: Fragment(R.layout.fragment_follow) {
 
         showLoading(true)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FollowersViewModel::class.java)
         viewModel.setFollowers(username)
-        viewModel.getFollowers().observe(viewLifecycleOwner,{
-            if (it != null){
+        viewModel.getFollowers().observe(viewLifecycleOwner, {
+            if (it != null) {
                 adapter.setUser(it)
                 showLoading(false)
             }

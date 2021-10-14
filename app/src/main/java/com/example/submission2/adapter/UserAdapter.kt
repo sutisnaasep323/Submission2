@@ -7,11 +7,30 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.databinding.ListItemsBinding
 import com.example.submission2.model.UserItem
+import java.util.*
+import kotlin.collections.ArrayList
 
-class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private val list = ArrayList<UserItem>()
+    private val listUsed = ArrayList<UserItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
+
+//    fun filter(textSearch: String) {
+//        var textSearch = textSearch
+//        textSearch = textSearch.toLowerCase(Locale.getDefault())
+//        list.clear()
+//        if (textSearch.length == 0) {
+//            list.addAll(listUsed)
+//        } else {
+//            for (customerPaid in listUsed) {
+//                if (customerPaid.getName().toLowerCase(Locale.getDefault())
+//                        .contains(textSearch)
+//                ) customerList.add(customerPaid)
+//            }
+//        }
+//        notifyDataSetChanged()
+//    }
 
     fun setUser(users: ArrayList<UserItem>) {
         list.clear()
@@ -30,7 +49,7 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                 username.text = user.login
                 url.text = user.url
             }
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 onItemClickCallback?.onItemClicked(user)
             }
         }
@@ -50,6 +69,7 @@ class UserAdapter: RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
+
     interface OnItemClickCallback {
         fun onItemClicked(user: UserItem)
     }

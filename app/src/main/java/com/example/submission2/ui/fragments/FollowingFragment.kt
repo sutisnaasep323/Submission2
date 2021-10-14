@@ -11,7 +11,7 @@ import com.example.submission2.databinding.FragmentFollowBinding
 import com.example.submission2.ui.DetailUserActivity
 import com.example.submission2.ui.viewmodel.FollowingViewModel
 
-class FollowingFragment: Fragment(R.layout.fragment_follow) {
+class FollowingFragment : Fragment(R.layout.fragment_follow) {
     private var _binding: FragmentFollowBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: UserAdapter
@@ -37,10 +37,13 @@ class FollowingFragment: Fragment(R.layout.fragment_follow) {
 
         showLoading(true)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowingViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FollowingViewModel::class.java)
         viewModel.setFollowing(username)
-        viewModel.getFollowing().observe(viewLifecycleOwner,{
-            if (it != null){
+        viewModel.getFollowing().observe(viewLifecycleOwner, {
+            if (it != null) {
                 adapter.setUser(it)
                 showLoading(false)
             }
