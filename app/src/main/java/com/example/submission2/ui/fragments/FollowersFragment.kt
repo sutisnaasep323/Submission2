@@ -1,5 +1,6 @@
 package com.example.submission2.ui.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
     private lateinit var viewModel: FollowersViewModel
     private lateinit var username: String
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

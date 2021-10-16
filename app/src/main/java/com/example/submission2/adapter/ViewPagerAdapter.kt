@@ -13,11 +13,7 @@ import com.example.submission2.ui.fragments.FollowingFragment
 class ViewPagerAdapter(private val mContext: Context, fm: FragmentManager, data: Bundle) :
     FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
-    private var fragmentBundle: Bundle
-
-    init {
-        fragmentBundle = data
-    }
+    private var fragmentBundle: Bundle = data
 
     @StringRes
     private val tabTitles = intArrayOf(
@@ -29,7 +25,7 @@ class ViewPagerAdapter(private val mContext: Context, fm: FragmentManager, data:
         return 2
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return mContext.resources.getString(tabTitles[position])
     }
 

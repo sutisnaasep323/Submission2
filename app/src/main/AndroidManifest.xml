@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Submission2">
+        android:theme="@style/Theme.Submission2"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".ui.DetailUserActivity"
             android:label="Detail User"

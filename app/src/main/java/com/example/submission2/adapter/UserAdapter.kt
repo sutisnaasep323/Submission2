@@ -1,5 +1,6 @@
 package com.example.submission2.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,31 +8,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.databinding.ListItemsBinding
 import com.example.submission2.model.UserItem
-import java.util.*
 import kotlin.collections.ArrayList
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private val list = ArrayList<UserItem>()
-    private val listUsed = ArrayList<UserItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
 
-//    fun filter(textSearch: String) {
-//        var textSearch = textSearch
-//        textSearch = textSearch.toLowerCase(Locale.getDefault())
-//        list.clear()
-//        if (textSearch.length == 0) {
-//            list.addAll(listUsed)
-//        } else {
-//            for (customerPaid in listUsed) {
-//                if (customerPaid.getName().toLowerCase(Locale.getDefault())
-//                        .contains(textSearch)
-//                ) customerList.add(customerPaid)
-//            }
-//        }
-//        notifyDataSetChanged()
-//    }
-
+    @SuppressLint("NotifyDataSetChanged")
     fun setUser(users: ArrayList<UserItem>) {
         list.clear()
         list.addAll(users)
