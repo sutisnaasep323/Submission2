@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.submission2.R
 import com.example.submission2.adapter.ViewPagerAdapter
 import com.example.submission2.databinding.ActivityDetailUserBinding
 import com.example.submission2.ui.viewmodel.DetailViewModel
@@ -44,9 +43,9 @@ class DetailUserActivity : AppCompatActivity() {
                 binding.apply {
                     tvUsername.text = it.login
                     tvName.text = it.name
-                    tvFollowers.text = resources.getString(R.string.followers, it.followers)
-                    tvFollowing.text = resources.getString(R.string.following, it.following)
-                    tvRepository.text = resources.getString(R.string.repository, it.public_repos)
+                    tvFollowersData.text = it.followers.toString()
+                    tvFollowingData.text = it.following.toString()
+                    tvRepositoryData.text = it.public_repos.toString()
                     Glide.with(this@DetailUserActivity)
                         .load(it.avatar_url)
                         .apply(RequestOptions())

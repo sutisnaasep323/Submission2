@@ -4,11 +4,12 @@
     <string name="username">Username</string>
     <string name="search">Search</string>
     <string name="search_user">Tolong masukkan username</string>
-    <string name="followers_title">Followers</string>
-    <string name="following_title">Following</string>
-    <string name="followers">Followers : %d </string>
-    <string name="following">Following : %d </string>
-    <string name="repository">Repository : %d </string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="repository">Repository</string>
+    <string name="repository_data">NULL</string>
+    <string name="followers_data">NULL</string>
+    <string name="following_data">NULL</string>
     <string name="name">Name</string>
     <string name="images">images</string>
 </resources>

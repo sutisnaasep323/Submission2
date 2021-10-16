@@ -17,8 +17,8 @@ class ViewPagerAdapter(private val mContext: Context, fm: FragmentManager, data:
 
     @StringRes
     private val tabTitles = intArrayOf(
-        R.string.followers_title,
-        R.string.following_title
+        R.string.followers,
+        R.string.following
     )
 
     override fun getCount(): Int {
