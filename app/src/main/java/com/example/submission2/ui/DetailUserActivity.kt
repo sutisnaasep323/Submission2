@@ -2,6 +2,7 @@ package com.example.submission2.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -28,11 +29,14 @@ class DetailUserActivity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
+        showLoading(true)
+
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(DetailViewModel::class.java)
         if (username != null) {
+            showLoading(false)
             viewModel.setDetailUser(username)
         }
         viewModel.getDetailUser().observe(this, {
@@ -42,6 +46,7 @@ class DetailUserActivity : AppCompatActivity() {
                     tvName.text = it.name
                     tvFollowers.text = resources.getString(R.string.followers, it.followers)
                     tvFollowing.text = resources.getString(R.string.following, it.following)
+                    tvRepository.text = resources.getString(R.string.repository, it.public_repos)
                     Glide.with(this@DetailUserActivity)
                         .load(it.avatar_url)
                         .apply(RequestOptions())
@@ -56,5 +61,13 @@ class DetailUserActivity : AppCompatActivity() {
             tabs.setupWithViewPager(viewpager)
         }
 
+    }
+
+    private fun showLoading(condition: Boolean) {
+        if (condition) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 }

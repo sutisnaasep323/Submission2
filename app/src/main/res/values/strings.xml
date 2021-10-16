@@ -6,6 +6,8 @@
     <string name="search_user">Tolong masukkan username</string>
     <string name="followers_title">Followers</string>
     <string name="following_title">Following</string>
-    <string name="followers">%d Followers</string>
-    <string name="following">%d Following</string>
+    <string name="followers">Followers : %d </string>
+    <string name="following">Following : %d </string>
+    <string name="repository">Repository : %d </string>
+    <string name="name">Name</string>
 </resources>

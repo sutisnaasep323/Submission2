@@ -91,9 +91,9 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.setHasFixedSize(true)
 
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
-            override fun onItemClicked(userItems: UserItem) {
+            override fun onItemClicked(user: UserItem) {
                 Intent(this@MainActivity, DetailUserActivity::class.java).also {
-                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, userItems.login)
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
                     startActivity(it)
                 }
             }

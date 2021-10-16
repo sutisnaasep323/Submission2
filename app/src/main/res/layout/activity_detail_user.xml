@@ -21,9 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Name"
-        android:textSize="18sp"
+        android:text="@string/name"
         android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/avatar_profile"
         app:layout_constraintStart_toStartOf="@+id/avatar_profile"
         app:layout_constraintTop_toBottomOf="@+id/avatar_profile" />
@@ -33,8 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:text="@string/username"
         android:textSize="14sp"
-        android:text="Username"
         app:layout_constraintEnd_toEndOf="@+id/avatar_profile"
         app:layout_constraintStart_toStartOf="@+id/avatar_profile"
         app:layout_constraintTop_toBottomOf="@+id/tv_name" />
@@ -49,30 +50,50 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_username">
 
         <TextView
+            android:id="@+id/tv_repository"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            android:text="@string/repository"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/tv_followers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:drawableStart="@drawable/ic_people"
             android:gravity="center_vertical"
+            android:text="@string/followers"
             android:textColor="@color/black"
-            android:text="@string/followers" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/following"
             android:textColor="@color/black"
-            android:text="@string/following" />
-
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:layout_marginTop="8dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
