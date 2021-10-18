@@ -7,6 +7,8 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="repository">Repository</string>
+    <string name="company">Company</string>
+    <string name="location">Location</string>
     <string name="repository_data">NULL</string>
     <string name="followers_data">NULL</string>
     <string name="following_data">NULL</string>

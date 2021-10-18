@@ -1,6 +1,5 @@
 package com.example.submission2.ui
 
-import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -16,6 +15,7 @@ import com.example.submission2.adapter.UserAdapter
 import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.UserItem
 import com.example.submission2.ui.viewmodel.UserViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -24,14 +24,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
     private lateinit var viewModel: UserViewModel
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         adapter = UserAdapter()
-        adapter.notifyDataSetChanged()
 
         showRecyclerView()
         setMainModel()
@@ -43,9 +41,11 @@ class MainActivity : AppCompatActivity() {
             this,
             ViewModelProvider.NewInstanceFactory()
         ).get(UserViewModel::class.java)
-        viewModel.showImage.observe(this, {
-            showSearch(it)
+
+        viewModel.showLoading.observe(this, {
+            showLoading(it)
         })
+
         viewModel.getSearchUser().observe(this, {
             if (it != null) {
                 adapter.setUser(it)
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     showSearch(false)
                     showLoading(true)
                     setMainModel()
-                    viewModel.setUser(query)
+                    viewModel.setUs`er(query)
                     binding.recyclerView.visibility = View.VISIBLE
                 }
                 return true
@@ -113,10 +113,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoading(condition: Boolean) {
-        if (condition) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
+        binding.progressBar.visibility = if (condition) View.VISIBLE else View.GONE
     }
 }

@@ -1,36 +1,30 @@
 package com.example.submission2.adapter
 
-import android.content.Context
 import android.os.Bundle
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.submission2.R
 import com.example.submission2.ui.fragments.FollowersFragment
 import com.example.submission2.ui.fragments.FollowingFragment
 
-class ViewPagerAdapter(private val mContext: Context, fm: FragmentManager, data: Bundle) :
-    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class ViewPagerAdapter(activity: AppCompatActivity, data: Bundle) :
+    FragmentStateAdapter(activity) {
 
     private var fragmentBundle: Bundle = data
 
     @StringRes
-    private val tabTitles = intArrayOf(
+    val tabTitles = intArrayOf(
         R.string.followers,
         R.string.following
     )
 
-    override fun getCount(): Int {
+    override fun getItemCount(): Int {
         return 2
     }
 
-    override fun getPageTitle(position: Int): CharSequence {
-        return mContext.resources.getString(tabTitles[position])
-    }
-
-
-    override fun getItem(position: Int): Fragment {
+    override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
             0 -> fragment = FollowersFragment()

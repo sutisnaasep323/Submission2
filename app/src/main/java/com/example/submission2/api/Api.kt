@@ -1,5 +1,7 @@
 package com.example.submission2.api
 
+import com.example.submission2.BuildConfig
+import com.example.submission2.BuildConfig.*
 import com.example.submission2.model.DetailUserResponse
 import com.example.submission2.model.UserItem
 import com.example.submission2.model.UserResponse
@@ -11,25 +13,25 @@ import retrofit2.http.Query
 
 interface Api {
     @GET("search/users")
-    @Headers("Authorization: token (APIKEY)")
+    @Headers("Authorization: token ")
     fun getSearchUsers(
         @Query("q") query: String
     ): Call<UserResponse>
 
     @GET("users/{username}")
-    @Headers("Authorization: token (APIKEY)")
+    @Headers("Authorization: token ")
     fun getDetailUser(
         @Path("username") username: String?
     ): Call<DetailUserResponse>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: token (APIKEY)")
+    @Headers("Authorization: token ")
     fun getFollowers(
         @Path("username") username: String
     ): Call<ArrayList<UserItem>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: token (APIKEY)")
+    @Headers("Authorization: token ")
     fun getFollowing(
         @Path("username") username: String
     ): Call<ArrayList<UserItem>>

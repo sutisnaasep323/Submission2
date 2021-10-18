@@ -14,7 +14,7 @@ import com.example.submission2.ui.viewmodel.FollowingViewModel
 
 class FollowingFragment : Fragment(R.layout.fragment_follow) {
     private var _binding: FragmentFollowBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
     private lateinit var adapter: UserAdapter
     private lateinit var viewModel: FollowingViewModel
     private lateinit var username: String
@@ -23,15 +23,15 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args = arguments
-        username = args?.getString(DetailUserActivity.EXTRA_USERNAME).toString()
+
+        username = arguments?.getString(DetailUserActivity.EXTRA_USERNAME).toString()
 
         _binding = FragmentFollowBinding.bind(view)
 
         adapter = UserAdapter()
-        adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
 
-        binding.apply {
+        binding?.apply {
             recyclerView.setHasFixedSize(true)
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.adapter = adapter
@@ -53,11 +53,7 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
     }
 
     private fun showLoading(condition: Boolean) {
-        if (condition) {
-            binding.progressBar.visibility = View.VISIBLE
-        } else {
-            binding.progressBar.visibility = View.GONE
-        }
+        binding?.progressBar?.visibility = if (condition) View.VISIBLE else View.GONE
     }
 
     override fun onDestroyView() {

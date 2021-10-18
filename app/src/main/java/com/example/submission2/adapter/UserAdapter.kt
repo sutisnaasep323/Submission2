@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.submission2.R
 import com.example.submission2.databinding.ListItemsBinding
 import com.example.submission2.model.UserItem
 import kotlin.collections.ArrayList
@@ -29,6 +30,9 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
                 Glide.with(itemView.context)
                     .load(user.avatar_url)
                     .apply(RequestOptions())
+                    .placeholder(R.drawable.ic_load_image)
+                    .error(R.drawable.ic_broken_image)
+                    .circleCrop()
                     .into(avatar)
                 username.text = user.login
                 url.text = user.url
