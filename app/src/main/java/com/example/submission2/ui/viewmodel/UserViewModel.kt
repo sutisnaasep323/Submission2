@@ -1,6 +1,8 @@
 package com.example.submission2.ui.viewmodel
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +20,7 @@ class UserViewModel : ViewModel() {
 
     val listUser = MutableLiveData<ArrayList<UserItem>>()
 
-    fun setUser(query: String) {
+    fun setUser(query: String, context: Context) {
 
         _isLoading.value = true
         RetrofitClient.apiInstance
@@ -36,6 +38,7 @@ class UserViewModel : ViewModel() {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     _isLoading.value = false
                     Log.d("Failure", t.message.toString())
+                    Toast.makeText(context, "Failure: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
 
             })

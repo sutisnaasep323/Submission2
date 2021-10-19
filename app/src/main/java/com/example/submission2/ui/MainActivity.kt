@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                     showSearch(false)
                     showLoading(true)
                     setMainModel()
-                    viewModel.setUs`er(query)
+                    viewModel.setUser(query, this@MainActivity)
                     binding.recyclerView.visibility = View.VISIBLE
                 }
                 return true

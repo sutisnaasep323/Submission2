@@ -1,5 +1,6 @@
 package com.example.submission2.ui.viewmodel
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -16,7 +17,7 @@ class DetailViewModel : ViewModel() {
 
     private val user = MutableLiveData<DetailUserResponse>()
 
-    fun setDetailUser(username: String) {
+    fun setDetailUser(username: String, context: Context) {
         RetrofitClient.apiInstance
             .getDetailUser(username)
             .enqueue(object : Callback<DetailUserResponse> {
@@ -31,7 +32,7 @@ class DetailViewModel : ViewModel() {
 
                 override fun onFailure(call: Call<DetailUserResponse>, t: Throwable) {
                     Log.d("Failure", t.message.toString())
-//                    Toast.makeText(this,"Api Failure: ${t.message}",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Failure: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
 
             })

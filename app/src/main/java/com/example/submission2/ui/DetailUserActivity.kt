@@ -19,6 +19,7 @@ class DetailUserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailUserBinding
     private lateinit var viewModel: DetailViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
@@ -36,7 +37,7 @@ class DetailUserActivity : AppCompatActivity() {
         ).get(DetailViewModel::class.java)
         if (username != null) {
             showLoading(false)
-            viewModel.setDetailUser(username)
+            viewModel.setDetailUser(username, this)
         }
 
         configDetailViewModel()
@@ -56,7 +57,7 @@ class DetailUserActivity : AppCompatActivity() {
         viewModel.getDetailUser().observe(this, {
             if (it != null) {
                 binding.apply {
-                    tvUsername.text = it.login
+//                    tvUsername.text = it.login
                     tvName.text = it.name
                     tvLocation.text = it.location
                     tvCompany.text = it.company
@@ -66,7 +67,15 @@ class DetailUserActivity : AppCompatActivity() {
                     Glide.with(this@DetailUserActivity)
                         .load(it.avatar_url)
                         .apply(RequestOptions())
+                        .placeholder(R.drawable.ic_load_image)
+                        .error(R.drawable.ic_broken_image)
                         .into(avatarProfile)
+                    Glide.with(this@DetailUserActivity)
+                        .load(it.avatar_url)
+                        .placeholder(R.drawable.ic_load_image)
+                        .error(R.drawable.ic_broken_image)
+                        .transform(BlurTransformation(this@DetailUserActivity))
+                        .into(backdrop)
                 }
             }
         })
