@@ -71,8 +71,8 @@
                     android:layout_height="110dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
+                    app:civ_border_color="@color/black"
                     app:civ_border_width="3dp"
-                    app:civ_border_color="@color/white"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ImageContrastCheck,ImageContrastCheck"
@@ -84,22 +84,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/name"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="32sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/avatar_profile"
                     app:layout_constraintTop_toBottomOf="@+id/avatar_profile" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/tv_username"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="@string/username"-->
-<!--                    android:textSize="14sp"-->
-<!--                    app:layout_constraintEnd_toEndOf="@+id/avatar_profile"-->
-<!--                    app:layout_constraintStart_toStartOf="@+id/avatar_profile"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />-->
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/username"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
                 <TextView
                     android:id="@+id/tv_repository_data"
@@ -119,7 +120,7 @@
                     android:id="@+id/tv_followers_data"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_vertical"
                     android:text="@string/followers_data"
                     android:textColor="@color/black"
@@ -187,9 +188,9 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/ic_company"
-                    app:layout_constraintStart_toEndOf="@id/tv_location"
                     app:layout_constraintBottom_toBottomOf="@id/tv_location"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+                    app:layout_constraintStart_toEndOf="@id/tv_location"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_username" />
 
                 <TextView
                     android:id="@+id/tv_location"
@@ -203,7 +204,7 @@
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/ic_location"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_name" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_username" />
 
                 <ProgressBar
                     android:id="@+id/progressBar"
@@ -219,13 +220,13 @@
                     android:id="@+id/toggle_favorite"
                     android:layout_width="38dp"
                     android:layout_height="38dp"
-                    android:textOff=""
-                    android:textOn=""
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
                     android:background="@drawable/favorite_toogle"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="16dp"
+                    android:textOff=""
+                    android:textOn=""
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

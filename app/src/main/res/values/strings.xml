@@ -14,4 +14,7 @@
     <string name="following_data">NULL</string>
     <string name="name">Name</string>
     <string name="images">images</string>
+    <string name="favorite">My Favorite</string>
+    <string name="setting">Setting</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

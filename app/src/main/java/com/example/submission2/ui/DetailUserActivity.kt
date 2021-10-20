@@ -19,6 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+import com.google.android.material.appbar.CollapsingToolbarLayout
+
 class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
@@ -31,7 +33,10 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val username = intent.getStringExtra(EXTRA_USERNAME)
+        val avatarUrl = intent.getStringExtra(EXTRA_AVATAR_URL)
+        val url = intent.getStringExtra(EXTRA_URL)
         val id = intent.getIntExtra(EXTRA_ID, 0)
+
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
@@ -76,7 +81,11 @@ class DetailUserActivity : AppCompatActivity() {
             isChecked = !isChecked
             if (isChecked){
                 if (username != null) {
-                    viewModel.addToFavorite(username, id)
+                    if (url != null) {
+                        if (avatarUrl != null) {
+                            viewModel.addToFavorite(username, url, avatarUrl, id)
+                        }
+                    }
                 }
             } else {
                 viewModel.removeFromFavorite(id)
@@ -90,7 +99,7 @@ class DetailUserActivity : AppCompatActivity() {
         viewModel.getDetailUser().observe(this, {
             if (it != null) {
                 binding.apply {
-//                    tvUsername.text = it.login
+                    tvUsername.text = it.login
                     tvName.text = it.name
                     tvLocation.text = it.location
                     tvCompany.text = it.company
@@ -120,7 +129,9 @@ class DetailUserActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_URL = "extra_url"
         const val EXTRA_ID = "extra_id"
+        const val EXTRA_AVATAR_URL = "extra_avatar_url"
     }
 
 }

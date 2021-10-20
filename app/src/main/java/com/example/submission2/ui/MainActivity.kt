@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -15,8 +16,13 @@ import com.example.submission2.adapter.UserAdapter
 import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.UserItem
 import com.example.submission2.ui.viewmodel.UserViewModel
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
+import android.R.menu
+
+import androidx.appcompat.view.menu.MenuBuilder
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +65,9 @@ class MainActivity : AppCompatActivity() {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
 
+        val m = menu as MenuBuilder
+        m.setOptionalIconsVisible(true)
+
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = menu.findItem(R.id.search).actionView as SearchView
 
@@ -87,6 +96,22 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_favorite -> {
+                Intent(this, FavoriteActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+            R.id.menu_setting -> {
+                Intent(this, SettingActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun showRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
@@ -96,6 +121,8 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClicked(user: UserItem) {
                 Intent(this@MainActivity, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
+                    it.putExtra(DetailUserActivity.EXTRA_AVATAR_URL, user.avatar_url)
+                    it.putExtra(DetailUserActivity.EXTRA_URL, user.url)
                     it.putExtra(DetailUserActivity.EXTRA_ID, user.id)
                     startActivity(it)
                 }

@@ -7,17 +7,14 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.submission2.api.RetrofitClient
 import com.example.submission2.data.FavoriteUser
 import com.example.submission2.data.FavoriteUserDao
 import com.example.submission2.data.UserDatabase
 import com.example.submission2.model.DetailUserResponse
-import com.example.submission2.ui.DetailUserActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,10 +55,10 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         return user
     }
 
-    fun addToFavorite(username: String, id: Int){
+    fun addToFavorite(username: String, url: String, avatar_url: String, id: Int){
         CoroutineScope(Dispatchers.IO).launch {
-            var user = FavoriteUser(
-                username, id
+            val user = FavoriteUser(
+                username, url, avatar_url, id
             )
             userDao?.addToFavorite(user)
         }

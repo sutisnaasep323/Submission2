@@ -23,13 +23,11 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         username = arguments?.getString(DetailUserActivity.EXTRA_USERNAME).toString()
 
         _binding = FragmentFollowBinding.bind(view)
 
         adapter = UserAdapter()
-//        adapter.notifyDataSetChanged()
 
         binding?.apply {
             recyclerView.setHasFixedSize(true)

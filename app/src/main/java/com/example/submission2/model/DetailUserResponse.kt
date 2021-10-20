@@ -2,6 +2,7 @@ package com.example.submission2.model
 
 data class DetailUserResponse(
     val login: String,
+    val id: Int,
     val avatar_url: String,
     val name: String,
     val followers: Int,
