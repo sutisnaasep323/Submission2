@@ -10,9 +10,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.submission2.R
 import com.example.submission2.adapter.ViewPagerAdapter
 import com.example.submission2.databinding.ActivityDetailUserBinding
+import com.example.submission2.effect.BlurTransformation
 import com.example.submission2.ui.viewmodel.DetailViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailUserActivity : AppCompatActivity() {
 
@@ -26,14 +31,14 @@ class DetailUserActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val username = intent.getStringExtra(EXTRA_USERNAME)
+        val id = intent.getIntExtra(EXTRA_ID, 0)
         val bundle = Bundle()
         bundle.putString(EXTRA_USERNAME, username)
 
         showLoading(true)
 
         viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
+            this
         ).get(DetailViewModel::class.java)
         if (username != null) {
             showLoading(false)
@@ -50,6 +55,34 @@ class DetailUserActivity : AppCompatActivity() {
         TabLayoutMediator(tabs,viewPager) {tab, position ->
             tab.text = resources.getString(viewPagerAdapter.tabTitles[position])
         }.attach()
+
+        var isChecked = false
+        CoroutineScope(Dispatchers.IO).launch {
+            val count = viewModel.checkUser(id)
+            withContext(Dispatchers.Main){
+                if (count != null){
+                    if (count > 0){
+                        binding.toggleFavorite.isChecked = true
+                        isChecked = true
+                    } else {
+                        binding.toggleFavorite.isChecked = false
+                        isChecked = false
+                    }
+                }
+            }
+        }
+
+        binding.toggleFavorite.setOnClickListener{
+            isChecked = !isChecked
+            if (isChecked){
+                if (username != null) {
+                    viewModel.addToFavorite(username, id)
+                }
+            } else {
+                viewModel.removeFromFavorite(id)
+            }
+            binding.toggleFavorite.isChecked = isChecked
+        }
 
     }
 
@@ -87,6 +120,7 @@ class DetailUserActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_ID = "extra_id"
     }
 
 }

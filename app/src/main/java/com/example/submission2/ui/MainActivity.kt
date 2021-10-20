@@ -96,6 +96,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClicked(user: UserItem) {
                 Intent(this@MainActivity, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
+                    it.putExtra(DetailUserActivity.EXTRA_ID, user.id)
                     startActivity(it)
                 }
             }
