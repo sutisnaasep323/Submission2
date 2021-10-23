@@ -11,18 +11,23 @@ import androidx.room.RoomDatabase
     exportSchema = false
 )
 
-abstract class UserDatabase: RoomDatabase() {
-    companion object{
-        var INSTANCE : UserDatabase? = null
+abstract class UserDatabase : RoomDatabase() {
+    companion object {
+        private var INSTANCE: UserDatabase? = null
 
-        fun getDatabase(context: Context): UserDatabase?{
-            if(INSTANCE == null){
-                synchronized(UserDatabase::class){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, UserDatabase::class.java, "User database").build()
+        fun getDatabase(context: Context): UserDatabase? {
+            if (INSTANCE == null) {
+                synchronized(UserDatabase::class) {
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        UserDatabase::class.java,
+                        "User database"
+                    ).build()
                 }
             }
             return INSTANCE
         }
     }
+
     abstract fun favoriteUserDao(): FavoriteUserDao
 }

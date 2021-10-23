@@ -26,6 +26,13 @@ class FavoriteActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(FavoriteViewModel::class.java)
 
+        viewModel.getFavoriteUser()?.observe(this, {
+            if (it != null) {
+                val list = mapList(it)
+                adapter.setUser(list)
+            }
+        })
+
         binding.apply {
             rvFavorite.setHasFixedSize(true)
             rvFavorite.layoutManager = LinearLayoutManager(this@FavoriteActivity)
@@ -43,18 +50,11 @@ class FavoriteActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.getFavoriteUser()?.observe(this, {
-            if(it != null){
-                val list = mapList(it)
-                adapter.setUser(list)
-            }
-        })
-
     }
 
     private fun mapList(users: List<FavoriteUser>): ArrayList<UserItem> {
         val listUsers = ArrayList<UserItem>()
-        for (user in users){
+        for (user in users) {
             val userMapped = UserItem(
                 user.login,
                 user.id,
@@ -65,4 +65,5 @@ class FavoriteActivity : AppCompatActivity() {
         }
         return listUsers
     }
+
 }

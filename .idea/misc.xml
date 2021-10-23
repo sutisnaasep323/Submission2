@@ -4,17 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/drawable/favorite_toogle.xml" value="0.169140625" />
+        <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/drawable/ic_favorite_white.xml" value="0.169140625" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/drawable/ic_launcher_background.xml" value="0.169140625" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/drawable/ic_load_image.xml" value="0.169140625" />
+        <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/drawable/ic_settings.xml" value="0.169140625" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/activity_detail_user.xml" value="0.2" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/activity_favorite.xml" value="0.15703125" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/activity_main.xml" value="0.209375" />
-        <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/activity_setting.xml" value="0.15703125" />
+        <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/activity_setting.xml" value="0.22" />
+        <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/activity_splash_screen.xml" value="0.15703125" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/fragment_follow.xml" value="0.209375" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/list_items.xml" value="0.33" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/test.xml" value="0.15703125" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/layout/toolbar.xml" value="0.15703125" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/menu/option_menu.xml" value="0.15703125" />
+        <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/menu/option_menu_detail.xml" value="0.15703125" />
         <entry key="..\:/Study Android/Dicoding_BFAA_Submission_MyGithubSearchUser/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.169140625" />
         <entry key="..\:/Study Android/Dicoding_Submission2/app/src/main/res/drawable-v24/ic_baseline_search.xml" value="0.22552083333333334" />
         <entry key="..\:/Study Android/Dicoding_Submission2/app/src/main/res/drawable/ic_baseline_search.xml" value="0.22205128205128205" />

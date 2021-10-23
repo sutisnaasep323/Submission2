@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Search User</string>
+    <string name="app_name">Github User App</string>
     <string name="url">url</string>
     <string name="username">Username</string>
     <string name="search">Search</string>
     <string name="search_user">Tolong masukkan username</string>
+    <string name="favorite_data">My Favorite</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="repository">Repository</string>

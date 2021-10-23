@@ -17,12 +17,15 @@ import com.example.submission2.databinding.ActivityMainBinding
 import com.example.submission2.model.UserItem
 import com.example.submission2.ui.viewmodel.UserViewModel
 import java.util.*
-import android.R.menu
-
+import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.view.menu.MenuBuilder
-
-
-
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import com.example.submission2.data.SettingPreferences
+import com.example.submission2.ui.viewmodel.SettingViewModel
+import com.example.submission2.ui.viewmodel.SettingViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
@@ -61,6 +64,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
@@ -80,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                if (query.isEmpty()){
+                if (query.isEmpty()) {
                     showSearch(true)
                     binding.recyclerView.visibility = View.GONE
                 } else {
@@ -97,7 +101,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.menu_favorite -> {
                 Intent(this, FavoriteActivity::class.java).also {
                     startActivity(it)
