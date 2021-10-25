@@ -43,6 +43,7 @@ class FavoriteActivity : AppCompatActivity() {
             override fun onItemClicked(user: UserItem) {
                 Intent(this@FavoriteActivity, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
+                    it.putExtra(DetailUserActivity.EXTRA_URL, user.url)
                     it.putExtra(DetailUserActivity.EXTRA_AVATAR_URL, user.avatar_url)
                     it.putExtra(DetailUserActivity.EXTRA_ID, user.id)
                     startActivity(it)

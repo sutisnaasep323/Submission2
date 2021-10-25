@@ -55,16 +55,16 @@ class DetailUserActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.tabs)
 
         viewPager.adapter = viewPagerAdapter
-        TabLayoutMediator(tabs,viewPager) {tab, position ->
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = resources.getString(viewPagerAdapter.tabTitles[position])
         }.attach()
 
         var isChecked = false
         CoroutineScope(Dispatchers.IO).launch {
             val count = viewModel.checkUser(id)
-            withContext(Dispatchers.Main){
-                if (count != null){
-                    if (count > 0){
+            withContext(Dispatchers.Main) {
+                if (count != null) {
+                    if (count > 0) {
                         binding.toggleFavorite.isChecked = true
                         isChecked = true
                     } else {
@@ -75,15 +75,12 @@ class DetailUserActivity : AppCompatActivity() {
             }
         }
 
-        binding.toggleFavorite.setOnClickListener{
+        binding.toggleFavorite.setOnClickListener {
             isChecked = !isChecked
-            if (isChecked){
-                if (username != null) {
-                    if (url != null) {
-                        if (avatarUrl != null) {
-                            viewModel.addToFavorite(username, url, avatarUrl, id)
-                        }
-                    }
+            if (isChecked) {
+                if (username != null && url != null && avatarUrl != null) {
+                    viewModel.addToFavorite(username, url, avatarUrl, id)
+
                 }
             } else {
                 viewModel.removeFromFavorite(id)

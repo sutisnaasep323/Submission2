@@ -7,13 +7,12 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.submission2.api.RetrofitClient
 import com.example.submission2.data.FavoriteUser
 import com.example.submission2.data.FavoriteUserDao
 import com.example.submission2.data.UserDatabase
 import com.example.submission2.model.DetailUserResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -55,10 +54,10 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
         return user
     }
 
-    fun addToFavorite(username: String, url: String, avatar_url: String, id: Int){
-        CoroutineScope(Dispatchers.IO).launch {
+    fun addToFavorite(username: String, url: String, avatar: String, id: Int){
+        viewModelScope.launch {
             val user = FavoriteUser(
-                username, url, avatar_url, id
+                username, url, avatar, id
             )
             userDao?.addToFavorite(user)
         }
@@ -67,7 +66,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
     suspend fun checkUser(id: Int) = userDao?.checkUser(id)
 
     fun removeFromFavorite(id: Int){
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch {
             userDao?.removeFromFavorite(id)
         }
     }

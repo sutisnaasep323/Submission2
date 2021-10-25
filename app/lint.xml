@@ -3,6 +3,8 @@
     <issue id="IconLocation">
         <ignore path="src/main/res/drawable/ic_favorite_data.png" />
         <ignore path="src/main/res/drawable/ic_github.png" />
+        <ignore path="src/main/res/drawable/ic_logo.png" />
         <ignore path="src/main/res/drawable/ic_setting_img.png" />
+        <ignore path="src/main/res/drawable/ic_splash.png" />
     </issue>
 </lint>

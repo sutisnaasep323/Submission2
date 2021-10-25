@@ -18,14 +18,7 @@ import com.example.submission2.model.UserItem
 import com.example.submission2.ui.viewmodel.UserViewModel
 import java.util.*
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.view.menu.MenuBuilder
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
-import com.example.submission2.data.SettingPreferences
-import com.example.submission2.ui.viewmodel.SettingViewModel
-import com.example.submission2.ui.viewmodel.SettingViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
